@@ -7,7 +7,8 @@ import {
   ShieldCheck, 
   Code2, 
   ChevronRight,
-  Send
+  Send,
+  CheckCircle2
 } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -25,6 +26,7 @@ const App: React.FC = () => {
   const navLinks = [
     { name: 'Services', href: '#services' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Log', href: '#log' },
     { name: 'Contact', href: '#contact' },
   ];
 
@@ -211,6 +213,37 @@ const App: React.FC = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+
+        {/* Log Section */}
+        <section id="log" className="py-20 border-t border-slate-900">
+          <div className="mb-12">
+            <h2 className="text-3xl font-bold text-white mb-4">Things I got done</h2>
+            <p className="text-slate-400 max-w-2xl">A running log of recent technical milestones and successful implementations.</p>
+          </div>
+          
+          <div className="space-y-8">
+            <div className="relative pl-8 border-l border-slate-800">
+              <div className="absolute -left-[1px] top-0 w-[1px] h-full bg-gradient-to-b from-emerald-500 to-transparent"></div>
+              <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-slate-950 border-2 border-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
+              
+              <div className="mb-2">
+                <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest bg-emerald-500/10 px-2 py-1 rounded">Today</span>
+                <span className="ml-3 text-slate-500 text-sm font-medium">{new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}</span>
+              </div>
+              
+              <ul className="space-y-4 mt-6">
+                <li className="flex items-start gap-3 group">
+                  <CheckCircle2 size={18} className="mt-1 text-emerald-500 shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="text-slate-200">Created this portfolio and consulting landing page from scratch.</span>
+                </li>
+                <li className="flex items-start gap-3 group">
+                  <CheckCircle2 size={18} className="mt-1 text-emerald-500 shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="text-slate-200">Created a script to make requests for Atlassian XRay API keys streamlined, integrating an automatic browser popup and automatic safe credential sharing with 1Password.</span>
+                </li>
+              </ul>
+            </div>
           </div>
         </section>
 
