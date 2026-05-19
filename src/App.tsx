@@ -65,6 +65,26 @@ const App: React.FC = () => {
     },
   ];
 
+  const logEntries = [
+    {
+      status: 'Today',
+      date: 'Tuesday, May 19',
+      items: [
+        'Created a script to divorce Atlassian Jira project workflow schemes so that disparate project admins can manage their workflows directly.',
+      ],
+      active: true
+    },
+    {
+      status: 'Yesterday',
+      date: 'Monday, May 18',
+      items: [
+        'Created this portfolio and consulting landing page from scratch.',
+        'Created a script to make requests for Atlassian XRay API keys streamlined, integrating an automatic browser popup and automatic safe credential sharing with 1Password.',
+      ],
+      active: false
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 selection:bg-emerald-500/30">
       {/* Navigation */}
@@ -223,27 +243,29 @@ const App: React.FC = () => {
             <p className="text-slate-400 max-w-2xl">A running log of recent technical milestones and successful implementations.</p>
           </div>
           
-          <div className="space-y-8">
-            <div className="relative pl-8 border-l border-slate-800">
-              <div className="absolute -left-[1px] top-0 w-[1px] h-full bg-gradient-to-b from-emerald-500 to-transparent"></div>
-              <div className="absolute -left-2 top-0 w-4 h-4 rounded-full bg-slate-950 border-2 border-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]"></div>
-              
-              <div className="mb-2">
-                <span className="text-xs font-bold text-emerald-500 uppercase tracking-widest bg-emerald-500/10 px-2 py-1 rounded">Today</span>
-                <span className="ml-3 text-slate-500 text-sm font-medium">{new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' })}</span>
+          <div className="space-y-12">
+            {logEntries.map((entry, index) => (
+              <div key={index} className="relative pl-8 border-l border-slate-800">
+                <div className={`absolute -left-[1px] top-0 w-[1px] h-full bg-gradient-to-b ${entry.active ? 'from-emerald-500' : 'from-slate-700'} to-transparent`}></div>
+                <div className={`absolute -left-2 top-0 w-4 h-4 rounded-full bg-slate-950 border-2 ${entry.active ? 'border-emerald-500 shadow-[0_0_10px_rgba(16,185,129,0.5)]' : 'border-slate-700'}`}></div>
+                
+                <div className="mb-2">
+                  <span className={`text-xs font-bold uppercase tracking-widest px-2 py-1 rounded ${entry.active ? 'text-emerald-500 bg-emerald-500/10' : 'text-slate-500 bg-slate-800'}`}>
+                    {entry.status}
+                  </span>
+                  <span className="ml-3 text-slate-500 text-sm font-medium">{entry.date}</span>
+                </div>
+                
+                <ul className="space-y-4 mt-6">
+                  {entry.items.map((item, itemIndex) => (
+                    <li key={itemIndex} className="flex items-start gap-3 group">
+                      <CheckCircle2 size={18} className={`mt-1 shrink-0 group-hover:scale-110 transition-transform ${entry.active ? 'text-emerald-500' : 'text-slate-500'}`} />
+                      <span className={entry.active ? 'text-slate-200' : 'text-slate-400'}>{item}</span>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              
-              <ul className="space-y-4 mt-6">
-                <li className="flex items-start gap-3 group">
-                  <CheckCircle2 size={18} className="mt-1 text-emerald-500 shrink-0 group-hover:scale-110 transition-transform" />
-                  <span className="text-slate-200">Created this portfolio and consulting landing page from scratch.</span>
-                </li>
-                <li className="flex items-start gap-3 group">
-                  <CheckCircle2 size={18} className="mt-1 text-emerald-500 shrink-0 group-hover:scale-110 transition-transform" />
-                  <span className="text-slate-200">Created a script to make requests for Atlassian XRay API keys streamlined, integrating an automatic browser popup and automatic safe credential sharing with 1Password.</span>
-                </li>
-              </ul>
-            </div>
+            ))}
           </div>
         </section>
 
