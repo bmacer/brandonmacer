@@ -68,13 +68,21 @@ const App: React.FC = () => {
   const logEntries = [
     {
       status: 'Today',
+      date: 'Thursday, May 21',
+      items: [
+        'Created a local environment variable rotation helper site to track storage locations (Local, 1Password, GitHub) and expiration timelines for development secrets.',
+      ],
+      active: true
+    },
+    {
+      status: 'Yesterday',
       date: 'Wednesday, May 20',
       items: [
         'Created a script to divorce Atlassian Jira project workflow schemes so that disparate project admins can manage their workflows directly.',
         'Created AI generated videos to use for the background of funshui.fun.',
         'Secured the @funshuiasheville handles for TikTok and Instagram.',
       ],
-      active: true
+      active: false
     },
     {
       status: 'Earlier',
